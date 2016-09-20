@@ -3,38 +3,36 @@ package movieapp.nohier.com.movieapp2;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.Log;
 
 /**
  * Created by mohamed k on 23/08/2016.
  */
 public class CheckForConnection {
-    Context c;
-    public  CheckForConnection(Context c)
-    {
 
-        this.c = c;
+    public  CheckForConnection()
+    {
     }
 
-    boolean isConnected() {
-        boolean wifiConnected = false;
-        boolean mobileConnected = false;
-        ConnectivityManager connMgr =
-                (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
+    public static boolean isConnected(Context c) {
+        ConnectivityManager cm = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        NetworkInfo activeInfo = connMgr.getActiveNetworkInfo();
-        if (activeInfo != null && activeInfo.isConnected()) {
-            wifiConnected = activeInfo.getType() == ConnectivityManager.TYPE_WIFI;
-            mobileConnected = activeInfo.getType() == ConnectivityManager.TYPE_MOBILE;
-            Log.v("XXXXXXXXXXXXXXX", String.valueOf(wifiConnected));
-            Log.v("XXXXXXXXXXXXXXX", String.valueOf(mobileConnected));
+        NetworkInfo wifiNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        if (wifiNetwork != null && wifiNetwork.isConnected()) {
             return true;
-        } else {
-            wifiConnected = false;
-            mobileConnected = false;
-            return false;
         }
 
+        NetworkInfo mobileNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if (mobileNetwork != null && mobileNetwork.isConnected()) {
+            return true;
+        }
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        if (activeNetwork != null && activeNetwork.isConnected()) {
+            return true;
+        }
+
+        return false;
     }
-}
+    }
+
 

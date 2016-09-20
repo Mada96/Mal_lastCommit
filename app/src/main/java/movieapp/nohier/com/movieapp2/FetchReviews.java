@@ -1,6 +1,7 @@
 package movieapp.nohier.com.movieapp2;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -173,8 +174,16 @@ public class FetchReviews extends AsyncTask  <Void,Void,ArrayList<Review>>{
     @Override
     protected void onPostExecute(ArrayList<Review> reviews) {
         ReviewAdapter adapter = new ReviewAdapter(reviews,context);
-        ls.setAdapter(adapter);
+        if(reviews == null)
+        {
+            Intent intent = new Intent (context, NoConnectionActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+
+        }
+       else{ ls.setAdapter(adapter);
 
         super.onPostExecute(reviews);
+    }
     }
 }

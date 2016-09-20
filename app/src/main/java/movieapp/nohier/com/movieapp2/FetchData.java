@@ -1,6 +1,7 @@
 package movieapp.nohier.com.movieapp2;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -108,6 +109,8 @@ public class FetchData extends AsyncTask<Void,Void,ArrayList<Image>> {
 
         } catch (IOException e) {
             Log.e("Fragment","Error",e);
+            Log.v("@@@@@@@@@@@@@@@@","NO INTER NET CONNECTION");
+
             e.printStackTrace();
 
             return null;
@@ -204,11 +207,16 @@ public class FetchData extends AsyncTask<Void,Void,ArrayList<Image>> {
     @Override  // doPostExecute should make the adapter and update the UI
     protected void onPostExecute(ArrayList<Image> images) {
       myAdapter adapter = new myAdapter(context,images);
-       gridView.setAdapter(adapter);
+        if(images == null)
+        {
+            Intent i1 = new Intent (context, NoConnectionActivity.class);
+            context.startActivity(i1);
 
-
-
-        super.onPostExecute(images);
+        }
+       else {
+            gridView.setAdapter(adapter);
+            super.onPostExecute(images);
+        }
     }
 
 }

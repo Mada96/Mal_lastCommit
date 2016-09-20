@@ -1,5 +1,6 @@
 package movieapp.nohier.com.movieapp2;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -11,10 +12,14 @@ public class NoConnectionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_no_connection);
-CheckForConnection checkForConnection = new CheckForConnection(this);
+        Context c = getApplication();
+CheckForConnection checkForConnection = new CheckForConnection();
 
-        Log.v("XXXXXXXXXXXXXXX", String.valueOf(checkForConnection.isConnected()));
-        Log.v("XXXXXXXXXXXXXXX", String.valueOf(checkForConnection.isConnected()));
-        Toast.makeText(this, "No Connection", Toast.LENGTH_LONG).show();
+        if(checkForConnection.isConnected(c))
+        {
+            Log.v("YESYESYESYES","YES");
+
+        }
+      else  Toast.makeText(this, "No Connection", Toast.LENGTH_LONG).show();
     }
 }

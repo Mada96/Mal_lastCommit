@@ -12,9 +12,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Check Your Connection"
+        android:text="Check Your Connection Then Press The Back Button"
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="58dp" />
+
 </RelativeLayout>

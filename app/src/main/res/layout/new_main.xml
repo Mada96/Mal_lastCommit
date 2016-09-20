@@ -13,7 +13,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="movieapp.nohier.com.movieapp2.ActivityMain"
-    android:id="@+id/fragmentToChange">
+    android:id="@+id/frame_layout_main">
 </FrameLayout>
 
 </android.support.design.widget.CoordinatorLayout>

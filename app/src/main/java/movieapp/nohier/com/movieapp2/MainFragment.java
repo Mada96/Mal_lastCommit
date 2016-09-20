@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +26,8 @@ public class MainFragment extends Fragment
     GridView gv ;
     private static final long serialVersionUID = 1L;
             Context context = getContext();
+            MovieListener movieListener;
+
 
 
     public MainFragment() {
@@ -46,13 +46,18 @@ public class MainFragment extends Fragment
         // inflate the whole xml file then get the grid view by id
 
         View rootView =  inflater.inflate(R.layout.fragment_main, container, false);
+
         gv = (GridView) rootView.findViewById(R.id.gridView);
         gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Image object = (Image) gv.getAdapter().getItem(position);
+                movieListener.setMovie(object);
+
+
+              /*
                 FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+              FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 String tag =  null;
                 fragmentTransaction.addToBackStack(tag);
                 Fragment detailedFragment = new DetailedFragment();
@@ -60,15 +65,21 @@ public class MainFragment extends Fragment
                 bundle.putParcelable("Image", object);
                 Log.v("55555555555555555555","object will be passed"+object.getPath());
                 detailedFragment.setArguments(bundle);
-                fragmentTransaction.replace(R.id.fragmentToChange,detailedFragment);
+                fragmentTransaction.replace(R.id.frame_layout_main,detailedFragment);
                 fragmentTransaction.commit();
+                */
 
             }
         });
 
         return rootView;
     }
+            // this function will be called form the Activity main to set the selected movie
+            public void setMovieListener(MovieListener movieListener1){
+                movieListener = movieListener1;
 
+
+            }
     @Override
     public void onStart() {
         // check for the connection first;

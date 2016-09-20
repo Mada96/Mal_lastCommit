@@ -1,8 +1,4 @@
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -86,7 +82,8 @@
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/fav_button" />
+                    android:id="@+id/fav_button"
+                    android:background="@android:drawable/ic_menu_save" />
 
             </LinearLayout>
         </LinearLayout>
@@ -135,8 +132,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Reviews"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
+                 />
 
             <ListView
                 android:layout_width="wrap_content"
@@ -154,28 +150,6 @@
 
 </ScrollView>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fav_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_menu_save" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/home_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|end"
-        android:layout_marginBottom="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:src="@drawable/ic_home_black_24dp"
-        app:layout_anchor="@id/fav_fab"
-        app:layout_anchorGravity="top" />
-        />
 
-</android.support.design.widget.CoordinatorLayout>
+

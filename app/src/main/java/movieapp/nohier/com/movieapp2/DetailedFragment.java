@@ -4,10 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -121,30 +118,12 @@ public class DetailedFragment extends Fragment {
             });
 
         }
-        FloatingActionButton fav_fab = (FloatingActionButton) rootView.findViewById(R.id.fav_fab);
-        fav_fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openHelper.insertData(id,title,path,overview, String.valueOf(vote),year);
 
-            }
-        });
         Button fav_button = (Button) rootView.findViewById(R.id.fav_button);
         fav_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 openHelper.insertData(id,title,path,overview, String.valueOf(vote),year);
 
-            }
-        });
-        FloatingActionButton home_fab = (FloatingActionButton) rootView.findViewById(R.id.home_fab);
-        home_fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                Fragment fragment = new MainFragment();
-                fragmentTransaction.replace(R.id.fragmentToChange,fragment);
-                fragmentTransaction.commit();
             }
         });
 
