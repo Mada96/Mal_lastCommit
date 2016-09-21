@@ -96,6 +96,8 @@ public class ActivityMain extends AppCompatActivity implements MovieListener, Ma
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             Fragment detailedFragment = new DetailedFragment();
             Bundle bundle = new Bundle();
+            String tag =  null;
+            fragmentTransaction.addToBackStack(tag);
             bundle.putParcelable("Image", image);
             Log.v("55555555555555555555","object will be passed"+image.getPath());
             detailedFragment.setArguments(bundle);
