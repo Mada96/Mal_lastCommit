@@ -1,11 +1,11 @@
-package movieapp.nohier.com.movieapp2;
+package movieapp.mohamed.com.movieapp2;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 /**
- * Created by mohamed k on 23/08/2016.
+ * Created by Mohamed Nasser on 23/11/2016.
  */
 public class CheckForConnection {
 

@@ -1,4 +1,4 @@
-package movieapp.nohier.com.movieapp2;
+package movieapp.mohamed.com.movieapp2;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-
+//Fragment detailed class :D
     public class DetailedFragment extends Fragment {
         ListView ls;
         Context c;

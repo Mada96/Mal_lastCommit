@@ -1,11 +1,11 @@
-package movieapp.nohier.com.movieapp2;
+package movieapp.mohamed.com.movieapp2;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.ListView;
+import android.widget.GridView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,35 +20,51 @@ import java.net.URL;
 import java.util.ArrayList;
 
 /**
- * Created by mohamed k on 30/08/2016.
+ * Created by mohamed Nasser on 13/11/2016.
  */
-public class FetchReviews extends AsyncTask  <Void,Void,ArrayList<Review>>{
-    private String URL_BASE1 = "https://api.themoviedb.org/3/movie/";
-    private String URL_BASE2 = "/reviews?";
-    private String API = "api_key";
-    private String API_KEY = "019be2a57857d388c65d464c870471b7";
-    private String rootelement = "results";
-    private String id;
-    private Context context;
-    private ListView ls;
+public class FetchData extends AsyncTask<Void,Void,ArrayList<Image>> {
 
-    public FetchReviews(String id,Context context,ListView ls) {
-        this.id = id;
-        URL_BASE1+=id+URL_BASE2;
+    /*
+    Before defining the values you should define th parts of the url itself
+     */
+    private String   SORTING_VALUE = null;
+    GridView gridView;
+    private Context context;
+    private String BASE_URL= "https://api.themoviedb.org/3/discover/movie?";
+    private String SORTING = "sort_by";
+    private String API_KEY = "api_key";
+    private String APPID = "019be2a57857d388c65d464c870471b7";
+    // define the first element to parse from
+    private String rootelement = "results";
+    // this is the Constructor
+
+    @Override
+    protected void onPreExecute() {
+
+    }
+
+    public FetchData (Context context, GridView gridView,String SORTING_VALUE)
+    {
         this.context = context;
-        this.ls = ls;
+        this.gridView = gridView;
+        this.SORTING_VALUE =SORTING_VALUE;
+
 
     }
 
     @Override
-    protected ArrayList<Review> doInBackground(Void... params) {
+    protected ArrayList<Image> doInBackground(Void... params)
+    {
+
+        // check for the preferences before build the url every time
         HttpURLConnection urlConnection = null;
         BufferedReader bufferedReader = null;
         String finalresult;
         try {
-            Uri builturl = Uri.parse(URL_BASE1).buildUpon()
-                    .appendQueryParameter(API,API_KEY).build();
-            Log.v("************", String.valueOf(builturl));
+            Uri builturl = Uri.parse(BASE_URL).buildUpon()
+                    .appendQueryParameter(SORTING, SORTING_VALUE)
+                    .appendQueryParameter(API_KEY, APPID).build();
+            Log.v("BUILT URL", String.valueOf(builturl));
 
 
 
@@ -56,6 +72,7 @@ public class FetchReviews extends AsyncTask  <Void,Void,ArrayList<Review>>{
             URL url = new URL(builturl.toString());
             urlConnection = (HttpURLConnection)url.openConnection();
             urlConnection .setRequestMethod("GET");
+
             urlConnection .connect();
 
 
@@ -92,12 +109,26 @@ public class FetchReviews extends AsyncTask  <Void,Void,ArrayList<Review>>{
 
         } catch (IOException e) {
             Log.e("Fragment","Error",e);
+            Log.v("@@@@@@@@@@@@@@@@","NO INTER NET CONNECTION");
+
             e.printStackTrace();
 
             return null;
         }
 
         // after making the try and catch block you have to make the finally block
+
+
+        /*
+        try to make another connection to get the overview of the movie
+         */
+
+
+
+
+
+
+
 
 
         finally {
@@ -129,12 +160,12 @@ public class FetchReviews extends AsyncTask  <Void,Void,ArrayList<Review>>{
 
         }
 
-        return jsonParsing(finalresult);
-
+        return jsonParsing(finalresult);   // this is the actuall parsing (getting the results)
+        // this will return the ArrayList<Images>
 
     }
-    public ArrayList<Review> jsonParsing(String result){
-        ArrayList<Review> finalArrayList = new ArrayList<>(); // this is the array to be passed
+    public ArrayList<Image> jsonParsing(String result){
+        ArrayList<Image> finalArrayList = new ArrayList<>(); // this is the array to be passed
 
         // first get the movie posters and the title from the String result passed
 
@@ -147,16 +178,19 @@ public class FetchReviews extends AsyncTask  <Void,Void,ArrayList<Review>>{
             // 2- crate the a JsonArray object to be able to access the jason elements
             JSONArray jsonArray = jsonObject.getJSONArray(rootelement);
 
-            Review review = null;
-            String author;
-            String reviewText;
+            Image images = null;
 
             for(int i =0;i<jsonArray.length();i++) {
                 JSONObject oneMovie = jsonArray.getJSONObject(i);
-                author = oneMovie.getString("author");
-                reviewText = oneMovie.getString("content");
-                review = new Review(author,reviewText);
-                finalArrayList.add(review);
+                String imagePath = oneMovie.getString("poster_path");
+                String title  = oneMovie.getString("original_title");
+                String overview = oneMovie.getString("overview");
+                double vote = oneMovie.getDouble("vote_average");
+                String year = (String) oneMovie.get("release_date");
+                String id = oneMovie.getString("id");
+                Log.v("XXXXXXXXXX",id);
+                images = new Image(title,imagePath,overview,vote,year,id);
+                finalArrayList.add(images);
 
             }
 
@@ -170,20 +204,19 @@ public class FetchReviews extends AsyncTask  <Void,Void,ArrayList<Review>>{
         return finalArrayList; // here should be the ArrayList<Images>
     }
 
-
-    @Override
-    protected void onPostExecute(ArrayList<Review> reviews) {
-        ReviewAdapter adapter = new ReviewAdapter(reviews,context);
-        if(reviews == null)
+    @Override  // doPostExecute should make the adapter and update the UI
+    protected void onPostExecute(ArrayList<Image> images) {
+      myAdapter adapter = new myAdapter(context,images);
+        if(images == null)
         {
-            Intent intent = new Intent (context, NoConnectionActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intent);
+            Intent i1 = new Intent (context, NoConnectionActivity.class);
+            context.startActivity(i1);
 
         }
-       else{ ls.setAdapter(adapter);
+       else {
+            gridView.setAdapter(adapter);
+            super.onPostExecute(images);
+        }
+    }
 
-        super.onPostExecute(reviews);
-    }
-    }
 }

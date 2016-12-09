@@ -1,7 +1,7 @@
-package movieapp.nohier.com.movieapp2;
+package movieapp.mohamed.com.movieapp2;
 
 /**
- * Created by mohamed k on 20/09/2016.
+ * Created by mohamed Nasser on 20/11/2016.
  */
 public interface MovieListener {
 

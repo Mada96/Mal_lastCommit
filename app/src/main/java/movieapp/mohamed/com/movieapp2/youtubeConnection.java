@@ -1,4 +1,4 @@
-package movieapp.nohier.com.movieapp2;
+package movieapp.mohamed.com.movieapp2;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +18,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * Created by mohamed k on 29/08/2016.
+ * Created by mohamed Nasser on 29/11/2016.
  */
 // this class to play the trailer
     // after generating the movie key from the movie id we got;

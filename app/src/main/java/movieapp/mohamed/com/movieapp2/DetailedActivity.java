@@ -1,4 +1,4 @@
-package movieapp.nohier.com.movieapp2;
+package movieapp.mohamed.com.movieapp2;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -87,3 +87,4 @@ public class DetailedActivity extends AppCompatActivity
                  super.onStart();
              }
          }
+//pause on view change

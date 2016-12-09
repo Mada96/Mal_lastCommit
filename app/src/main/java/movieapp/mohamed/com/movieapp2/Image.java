@@ -1,10 +1,10 @@
-package movieapp.nohier.com.movieapp2;
+package movieapp.mohamed.com.movieapp2;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by mohamed k on 15/08/2016.
+ * Created by mohamed Nasser on 15/11/2016.
  */
 public class Image implements Parcelable {
     private String title;

@@ -1,4 +1,4 @@
-package movieapp.nohier.com.movieapp2;
+package movieapp.mohamed.com.movieapp2;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
 /**
- * Created by mohamed k on 02/09/2016.
+ * Created by mohamed Nasser on 02/11/2016.
  */
 public class OpenHelper extends SQLiteOpenHelper {
   private Context context;

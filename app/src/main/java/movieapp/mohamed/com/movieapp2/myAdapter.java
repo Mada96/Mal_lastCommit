@@ -1,4 +1,4 @@
-package movieapp.nohier.com.movieapp2;
+package movieapp.mohamed.com.movieapp2;
 
 import android.content.Context;
 import android.util.Log;
@@ -13,7 +13,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 /**
- * Created by mohamed k on 15/08/2016.
+ * Created by mohamed Nasser on 15/11/2016.
  */
 
 public class myAdapter extends BaseAdapter {

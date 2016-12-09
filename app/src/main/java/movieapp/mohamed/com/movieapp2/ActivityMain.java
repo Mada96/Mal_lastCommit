@@ -1,4 +1,4 @@
-package movieapp.nohier.com.movieapp2;
+package movieapp.mohamed.com.movieapp2;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -84,7 +84,7 @@ public class ActivityMain extends AppCompatActivity implements MovieListener, Ma
             Fragment detailedFragment = new DetailedFragment();
             Bundle bundle = new Bundle();
             bundle.putParcelable("Image", image);
-            Log.v("55555555555555555555","object will be passed"+image.getPath());
+            Log.v("kokokokoko","object will be passed"+image.getPath());
             detailedFragment.setArguments(bundle);
             fragmentTransaction.replace(R.id.frame_layout_detailed,detailedFragment);
             fragmentTransaction.commit();
@@ -99,7 +99,7 @@ public class ActivityMain extends AppCompatActivity implements MovieListener, Ma
             String tag =  null;
             fragmentTransaction.addToBackStack(tag);
             bundle.putParcelable("Image", image);
-            Log.v("55555555555555555555","object will be passed"+image.getPath());
+            Log.v("Asly :D","object will be passed"+image.getPath());
             detailedFragment.setArguments(bundle);
             fragmentTransaction.replace(R.id.frame_layout_main,detailedFragment);
             fragmentTransaction.commit();

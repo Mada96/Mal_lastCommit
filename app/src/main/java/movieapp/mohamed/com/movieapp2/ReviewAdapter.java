@@ -1,4 +1,4 @@
-package movieapp.nohier.com.movieapp2;
+package movieapp.mohamed.com.movieapp2;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 /**
- * Created by mohamed k on 30/08/2016.
+ * Created by mohamed Nasser on 30/11/2016.
  */
 public class ReviewAdapter extends BaseAdapter {
     private ArrayList<Review> reviews;

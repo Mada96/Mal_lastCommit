@@ -1,4 +1,4 @@
-package movieapp.nohier.com.movieapp2;
+package movieapp.mohamed.com.movieapp2;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -54,7 +54,7 @@ public class MainFragment extends Fragment
                 Image object = (Image) gv.getAdapter().getItem(position);
                 movieListener.setMovie(object);
 
-
+//test
               /*
                 FragmentManager fragmentManager = getFragmentManager();
               FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

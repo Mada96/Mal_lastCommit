@@ -1,4 +1,4 @@
-package movieapp.nohier.com.movieapp2;
+package movieapp.mohamed.com.movieapp2;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -17,7 +17,7 @@ CheckForConnection checkForConnection = new CheckForConnection();
 
         if(checkForConnection.isConnected(c))
         {
-            Log.v("YESYESYESYES","YES");
+            Log.v("YESYESYESYES:D","YES");
 
         }
       else  Toast.makeText(this, "No Connection", Toast.LENGTH_LONG).show();
